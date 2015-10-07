@@ -1,0 +1,102 @@
+<html><head><meta charset="UTF-8"><link rel="import" href="../polymer/polymer.html"></head><body><dom-module id="sm-helper-button">
+  <template>
+    <style>
+:host{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-align:center;-webkit-align-items:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;position:relative;color:var(--blue);width:var(--button-size,45px);height:var(--button-size,45px);font-size:16px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}:host::before{content:attr(icon);font-family:simpla-icon;speak:none}:host([disabled]){color:var(--grey);cursor:default;pointer-events:none}
+</style>
+
+    <content></content>
+  </template>
+  <script>/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	var SmHelperButton = (function () {
+	  function SmHelperButton() {
+	    _classCallCheck(this, SmHelperButton);
+	  }
+
+	  _createClass(SmHelperButton, [{
+	    key: 'beforeRegister',
+	    value: function beforeRegister() {
+	      this.is = 'sm-helper-button';
+
+	      this.properties = {
+	        icon: String,
+	        size: String
+	      };
+
+	      this.listeners = {
+	        'tap': 'tapHandler'
+	      };
+	    }
+	  }, {
+	    key: 'tapHandler',
+	    value: function tapHandler() {
+	      // Do something
+	    }
+	  }]);
+
+	  return SmHelperButton;
+	})();
+
+	Polymer(SmHelperButton);
+
+/***/ }
+/******/ ]);</script>
+</dom-module>
+</body></html>

@@ -1,0 +1,35 @@
+/**
+ * Actual button
+ * Size set via attr and js
+ */
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--blue);
+  width: var(--button-size, 45px);
+  height: var(--button-size, 45px);
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/**
+ * Button icon
+ */
+:host::before {
+  content: attr(icon);
+  font-family: 'simpla-icon';
+  speak: none;
+}
+
+/**
+ * States
+ */
+:host([disabled]) {
+  color: var(--grey);
+  cursor: default;
+  pointer-events: none;
+}
