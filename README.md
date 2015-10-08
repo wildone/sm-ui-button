@@ -1,5 +1,4 @@
 # helper button
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 Generalised button for use throughput Simpla
 
@@ -7,11 +6,15 @@ Generalised button for use throughput Simpla
 
 ### License
 
-MIT © bede@simpla.io
+MIT © Simpla <admin@simpla.io>
 
-[npm-image]: https://badge.fury.io/js/sm-helper-button.svg
-[npm-url]: https://npmjs.org/package/sm-helper-button
-[travis-image]: https://travis-ci.org/simplaio/sm-helper-button.svg?branch=master
+[bower-badge]: https://img.shields.io/bower/v/sm-helper-button.svg
+[bowerlicense-badge]: https://img.shields.io/bower/l/sm-helper-button.svg
+[travis-badge]: https://img.shields.io/travis/simplaio/sm-helper-button.svg
 [travis-url]: https://travis-ci.org/simplaio/sm-helper-button
-[daviddm-image]: https://david-dm.org/simplaio/sm-helper-button.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/simplaio/sm-helper-button
+[bowerdeps-badge]: https://img.shields.io/gemnasium/simplaio/sm-helper-button.svg
+[bowerdeps-url]: https://gemnasium.com/bower/sm-helper-button
+[npmdeps-badge]: https://img.shields.io/david/simplaio/sm-helper-button.svg
+[npmdeps-url]: https://david-dm.org/simplaio/sm-helper-button
+[npmdevdeps-badge]: https://img.shields.io/david/dev/simplaio/sm-helper-button.svg?theme=shields.io
+[npmdevdeps-url]: https://david-dm.org/dev/simplaio/sm-helper-button#info=devDependencies
