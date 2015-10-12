@@ -6,15 +6,17 @@ import csswring from 'csswring';
 import autoprefixer from 'autoprefixer';
 import wct from 'web-component-tester';
 import notify from 'gulp-notify';
+import gulprun from 'run-sequence';
 import vulcanize from 'gulp-vulcanize';
 import gulpif from 'gulp-if';
 import eslint from 'gulp-eslint';
 import postcss from 'gulp-postcss';
 import plumber from 'gulp-plumber';
 import browserSync from 'browser-sync';
-import { simplaImports, name as ELEMENT_NAME } from './bower.json';
+import { componentImports, name as ELEMENT_NAME } from './bower.json';
+import path from 'path';
 
-const imports = simplaImports.map(dep => `../${dep}`),
+const imports = componentImports.map(dep => `../${dep}`),
       bs = browserSync.create();
 
 // Get WCT going
@@ -31,19 +33,38 @@ const options = {
             ]
           }
         },
-        postcss: [ csswring(), autoprefixer() ],
+        postcss: [
+          autoprefixer(),
+          csswring()
+        ],
         vulcanize: {
           inlineCss: true,
           inlineScripts: true,
           addedImports: imports
+        },
+        browserSync: {
+          server: {
+            baseDir: './',
+            index: 'demo/index.html',
+            routes: {
+              '/': './bower_components',
+              [`/${ELEMENT_NAME}.html`]: `./${ELEMENT_NAME}.html`
+            }
+          },
+          open: false
         }
       },
       errorNotifier = () => plumber({ errorHandler: notify.onError('Error: <%= error.message %>') });
 
 gulp.task('process', () => {
-  return gulp.src('src/*.{html,js,css}')
+  return gulp.src(['src/*/*.{html,js,css}', 'src/*.{html,js,css}'])
           .pipe(errorNotifier())
-          .pipe(named())
+            .pipe(gulpif('*.js', named(file => {
+              let name = path.basename(file.path, path.extname(file.path)),
+                  parent = path.basename(path.dirname(file.path));
+
+              return parent === 'src' ? name : path.join(parent, name);
+            })))
 
             .pipe(gulpif('*.css', postcss(options.postcss)))
 
@@ -56,10 +77,14 @@ gulp.task('process', () => {
 });
 
 gulp.task('build', ['process'], () => {
-  return gulp.src(`.tmp/*.html`)
+  return gulp.src([`.tmp/${ELEMENT_NAME}/${ELEMENT_NAME}.html`,`.tmp/${ELEMENT_NAME}.html`])
           .pipe(errorNotifier())
-          .pipe(vulcanize(options.vulcanize))
+          .pipe(gulpif('*.html', vulcanize(options.vulcanize)))
           .pipe(gulp.dest('.'));
+});
+
+gulp.task('run', callback => {
+  gulprun('build', 'clean', callback);
 });
 
 gulp.task('clean', () => {
@@ -67,21 +92,12 @@ gulp.task('clean', () => {
 });
 
 gulp.task('demo', (callback) => {
-  gulp.watch('./*.html').on('change', bs.reload);
+  gulp.watch('./*.{html,js}').on('change', bs.reload);
 
-  return bs.init({
-    server: {
-      baseDir: './',
-      index: 'demo/index.html',
-      routes: {
-        '/': './bower_components',
-        [`/${ELEMENT_NAME}.html`]: `./${ELEMENT_NAME}.html`
-      }
-    }
-  });
+  return bs.init(options.browserSync);
 });
 
 gulp.task('test', ['build', 'test:local']);
 
-gulp.task('watch', () => gulp.watch(['src/**/*'], ['build']));
-gulp.task('default', ['build', 'demo', 'watch']);
+gulp.task('watch', () => gulp.watch(['src/**/*'], ['run']));
+gulp.task('default', ['run', 'demo', 'watch']);

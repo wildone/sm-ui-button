@@ -1,7 +1,7 @@
 {
   "name": "sm-helper-button",
-  "version": "0.1.0",
-  "description": "Generalised button for use throughput Simpla",
+  "version": "0.0.0",
+  "description": "Helper button for use inside other Simpla components",
   "main": "sm-helper-button.html",
   "scripts": {
     "test": "gulp test:local"
@@ -42,6 +42,7 @@
     "gulp-vulcanize": "^6.0.1",
     "polyclean": "^1.2.0",
     "polylint": "^2.3.1",
+    "run-sequence": "^1.1.4",
     "vinyl-named": "^1.1.0",
     "web-component-tester": "^3.3.22",
     "webpack": "^1.12.2",

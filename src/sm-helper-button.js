@@ -3,8 +3,7 @@ class SmHelperButton {
     this.is = 'sm-helper-button';
 
     this.properties = {
-      icon: String,
-      size: String
+      icon: String
     };
 
     this.listeners = {

@@ -1,12 +1,12 @@
-# helper button
+# Helper Button
 
-Generalised button for use throughput Simpla
+Helper button for use inside other Simpla components
 
 --
 
 ### License
 
-MIT © Simpla <admin@simpla.io>
+MIT © [Simpla](http://simpla.io)
 
 [bower-badge]: https://img.shields.io/bower/v/sm-helper-button.svg
 [bowerlicense-badge]: https://img.shields.io/bower/l/sm-helper-button.svg

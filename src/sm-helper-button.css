@@ -1,23 +1,17 @@
-/**
- * Actual button
- * Size set via attr and js
- */
 :host {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  color: var(--blue);
-  width: var(--button-size, 45px);
-  height: var(--button-size, 45px);
   font-size: 16px;
+  height: var(--tool-size);
   cursor: pointer;
   user-select: none;
   -webkit-touch-callout: none;
 }
 
 /**
- * Button icon
+ * Icon
  */
 :host::before {
   content: attr(icon);
