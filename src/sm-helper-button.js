@@ -6,14 +6,8 @@ class SmHelperButton {
       icon: String
     };
 
-    this.listeners = {
-      'tap': 'tapHandler'
-    };
   }
 
-  tapHandler() {
-    // Do something
-  }
 }
 
 Polymer(SmHelperButton);
