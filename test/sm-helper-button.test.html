@@ -33,6 +33,12 @@
         it('is okay', function() {
           expect(component).to.be.ok;
         });
+
+        it('has active behavior', function() {
+          component.active = true;
+
+          expect(component.hasAttribute('active')).to.be.true;
+        });
       });
     </script>
   </body>

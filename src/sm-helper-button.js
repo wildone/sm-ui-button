@@ -5,9 +5,15 @@ class SmHelperButton {
     this.properties = {
       icon: String
     };
-
   }
 
+  get behaviors() {
+    return [
+      simpla.behaviors.active({
+        reflectToAttribute: true
+      })
+    ];
+  }
 }
 
 Polymer(SmHelperButton);
