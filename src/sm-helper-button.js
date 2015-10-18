@@ -3,7 +3,8 @@ class SmHelperButton {
     this.is = 'sm-helper-button';
 
     this.properties = {
-      icon: String
+      icon: String,
+      hasIcon: Boolean
     };
   }
 
@@ -13,6 +14,10 @@ class SmHelperButton {
         reflectToAttribute: true
       })
     ];
+  }
+
+  ready() {
+    this.hasIcon = !this.icon
   }
 }
 

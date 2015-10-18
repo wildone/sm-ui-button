@@ -10,18 +10,6 @@
   -webkit-touch-callout: none;
 }
 
-/**
- * Icon
- */
-:host::before {
-  content: attr(icon);
-  font-family: 'simpla-icon';
-  speak: none;
-}
-
-/**
- * States
- */
 :host([disabled]) {
   color: var(--grey);
   cursor: default;
