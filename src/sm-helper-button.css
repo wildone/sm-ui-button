@@ -22,3 +22,8 @@
   cursor: default;
   pointer-events: none;
 }
+
+/* Force the hidden attribute */
+.icon[hidden] {
+  display: none !important;
+}
