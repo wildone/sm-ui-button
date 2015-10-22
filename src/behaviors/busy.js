@@ -41,11 +41,11 @@ export default {
       return this.__spinnerOpts;
     }
 
-    const height = parseFloat(this._buttonHeight),
+    const height = parseFloat(this._buttonHeight) * HEIGHT_PERCENTAGE,
           radius = height * RADIUS_FACTOR,
           length = radius * LENGTH_FACTOR,
           width = radius < WIDTH_LIMIT ? SMALL_WIDTH : BIG_WIDTH,
-          left = height * OFFSET_FACTOR / 2 + 'px',
+          left = parseFloat(this._buttonHeight) * OFFSET_FACTOR / 2 + 'px',
           color = this._buttonColor,
           lines = LINES,
           zIndex = '';
