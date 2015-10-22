@@ -5,8 +5,16 @@
     <title>sm-helper-button</title>
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
+    <style>
+      sm-helper-button {
+        color: white;
+        padding: 0 30px;
+        border-radius: 5px;
+        margin: 15px;
+        float: left;
+      }
+    </style>
     <link rel="import" href="../sm-helper-button.html" />
-
     <style>
       sm-helper-button {
         width: 42px;
@@ -14,7 +22,8 @@
     </style>
   </head>
   <body>
-    <sm-helper-button>foo!</sm-helper-button>
-    <sm-helper-button icon="simpla:happy-smiley"></sm-helper-button>
+    <sm-helper-button style="background: rgb(76, 208, 204);">foo!</sm-helper-button>
+    <sm-helper-button style="background: rgb(61, 187, 48);" icon="simpla:happy-smiley"></sm-helper-button>
+    <sm-helper-button style="background: rgb(142, 142, 142);" busy>Busy...</sm-helper-button>
   </body>
 </html>

@@ -1,3 +1,6 @@
+import busy from './behaviors/busy';
+
+
 class SmHelperButton {
   beforeRegister() {
     this.is = 'sm-helper-button';
@@ -10,6 +13,7 @@ class SmHelperButton {
 
   get behaviors() {
     return [
+      busy,
       simpla.behaviors.active({
         reflectToAttribute: true
       })

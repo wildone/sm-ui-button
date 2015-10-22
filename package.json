@@ -43,6 +43,7 @@
     "polyclean": "^1.2.0",
     "polylint": "^2.3.1",
     "run-sequence": "^1.1.4",
+    "spin.js": "^2.3.2",
     "vinyl-named": "^1.1.0",
     "web-component-tester": "^3.3.22",
     "webpack": "^1.12.2",
