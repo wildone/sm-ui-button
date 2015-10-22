@@ -9,7 +9,10 @@ class SmHelperButton {
 
       icon: String,
 
-      hasIcon: Boolean,
+      _noIcon: {
+        type: Boolean,
+        computed: '_computeNoIcon(icon)'
+      },
 
       busy: {
         type: Boolean,
@@ -28,8 +31,8 @@ class SmHelperButton {
     ];
   }
 
-  ready() {
-    this.hasIcon = !this.icon
+  _computeNoIcon(icon) {
+    return !this.icon
   }
 }
 
