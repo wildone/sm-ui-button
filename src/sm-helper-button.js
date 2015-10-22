@@ -6,8 +6,16 @@ class SmHelperButton {
     this.is = 'sm-helper-button';
 
     this.properties = {
+
       icon: String,
-      hasIcon: Boolean
+
+      hasIcon: Boolean,
+
+      busy: {
+        type: Boolean,
+        reflectToAttribute: true
+      }
+
     };
   }
 

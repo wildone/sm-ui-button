@@ -1,5 +1,16 @@
 import Spinner from 'spin.js';
-const easings = simpla.constants.easings;
+
+const easings = simpla.constants.easings,
+      OFFSET_FACTOR = 1.4,
+      HEIGHT_PERCENTAGE = 0.8,
+      RADIUS_FACTOR = 0.2,
+      LENGTH_FACTOR = 0.6,
+      WIDTH_LIMIT = 7,
+      SMALL_WIDTH = 2,
+      BIG_WIDTH = 3,
+      LINES = 12,
+      OPEN_DURATION = 200,
+      CLOSE_DURATION = 180;
 
 export default {
   observers: [
@@ -7,6 +18,8 @@ export default {
   ],
 
   _toggleBusy(busy) {
+    let prepSpinner;
+
     if (busy) {
       this._goBusy();
     } else {
@@ -15,64 +28,71 @@ export default {
   },
 
   created() {
-    // Init the spinner
-    this._spinner = new Spinner();
+    let spinner = new Spinner(),
+        prepSpinner;
+
+
+
+    this._spinner = spinner;
   },
 
-  _initSpinner() {
-    let height,
-        radius,
-        width,
-        offset,
-        opts;
-
-    height = parseFloat(window.getComputedStyle(this).height);
-    offset = height * 1.4 / 2 + 'px';
-
-  	// If the button is tall we can afford some padding
-    if (height > 32) {
-      height *= 0.8;
+  get _spinnerOpts() {
+    if (this.__spinnerOpts) {
+      return this.__spinnerOpts;
     }
 
-    radius = height * 0.2,
-  	length = radius * 0.6,
-  	width = radius < 7 ? 2 : 3;
+    const height = parseFloat(this._buttonHeight),
+          radius = height * RADIUS_FACTOR,
+          length = radius * LENGTH_FACTOR,
+          width = radius < WIDTH_LIMIT ? SMALL_WIDTH : BIG_WIDTH,
+          left = height * OFFSET_FACTOR / 2 + 'px',
+          color = this._buttonColor,
+          lines = LINES,
+          zIndex = '';
 
-    opts = {
-      color: window.getComputedStyle(this).color,
-      lines: 12,
-      radius: radius,
-      length: length,
-      width: width,
-      left: offset,
-      zIndex: ''
-    }
-
-    Object.assign(this._spinner.opts, opts);
+    return {
+      color,
+      lines,
+      radius,
+      length,
+      width,
+      left,
+      zIndex
+    };
   },
 
-  get _buttonPadding() {
-    return this.__buttonPadding || (this.__buttonPadding = window.getComputedStyle(this).paddingLeft);
+  get _buttonPaddingLeft() {
+    return this.__buttonPaddingLeft || (this.__buttonPaddingLeft = window.getComputedStyle(this).paddingLeft);
+  },
+
+  get _buttonHeight() {
+    return this.__buttonHeight || (this.__buttonHeight = window.getComputedStyle(this).height);
+  },
+
+  get _buttonColor() {
+    return this.__buttonColor || (this.__buttonColor = window.getComputedStyle(this).color);
   },
 
   get _busyAnimation() {
+    const START_PADDING = this._buttonPaddingLeft,
+          END_PADDING = this.offsetHeight * OFFSET_FACTOR;
 
     return {
       target: this,
       frames: [
-        { 'padding-left': this._buttonPadding },
-        { 'padding-left': this.offsetHeight * 1.4 }
+        { 'padding-left': START_PADDING },
+        { 'padding-left': END_PADDING }
       ],
       opts: {
         open: {
           easing: easings.easeOutBack,
           fill: 'both',
-          duration: 200
+          duration: OPEN_DURATION
         },
         close: {
           easing: easings.easeOutCubic,
           fill: 'both',
-          duration: 180
+          duration: CLOSE_DURATION
         }
       }
     }
@@ -80,19 +100,17 @@ export default {
 
   _goBusy() {
     let { target, frames, opts } = this._busyAnimation;
-    this._initSpinner();
+
+    Object.assign(this._spinner.opts, this._spinnerOpts);
+
     this.animate(frames, opts.open);
     this._spinner.spin(this);
   },
 
   _stopBusy() {
     let { target, frames, opts } = this._busyAnimation;
-    this._spinner.stop();
+
     this.animate(frames.reverse(), opts.close);
-
+    this._spinner.stop();
   }
-
-
-
-
 }

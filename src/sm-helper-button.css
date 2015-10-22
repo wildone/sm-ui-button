@@ -17,8 +17,8 @@
   -webkit-touch-callout: none;
 }
 
-:host([disabled]) {
-  color: var(--grey);
+:host([disabled]),
+:host([busy]) {
   cursor: default;
   pointer-events: none;
 }

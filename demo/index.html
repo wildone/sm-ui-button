@@ -11,7 +11,6 @@
         padding: 0 30px;
         border-radius: 5px;
         margin: 15px;
-        float: left;
       }
     </style>
     <link rel="import" href="../sm-helper-button.html" />
@@ -24,6 +23,11 @@
   <body>
     <sm-helper-button style="background: rgb(76, 208, 204);">foo!</sm-helper-button>
     <sm-helper-button style="background: rgb(61, 187, 48);" icon="simpla:happy-smiley"></sm-helper-button>
-    <sm-helper-button style="background: rgb(142, 142, 142);" busy>Busy...</sm-helper-button>
+    <sm-helper-button id="busy" style="background: rgb(210, 134, 59);">Busy...</sm-helper-button>
+
+    <script>
+      var busyButton = document.getElementById('busy');
+      busyButton.busy = true;
+    </script>
   </body>
 </html>
