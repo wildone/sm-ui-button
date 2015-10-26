@@ -32,7 +32,6 @@
   "componentImports": [
     "polymer/polymer.html",
     "simpla/simpla.html",
-    "iron-icon/iron-icon.html",
-    "iron-icons/iron-icons.html"
+    "iron-icon/iron-icon.html"
   ]
 }
