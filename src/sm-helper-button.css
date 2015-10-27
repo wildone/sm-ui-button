@@ -24,6 +24,11 @@
   pointer-events: none;
 }
 
+.icon,
+.content {
+  margin: 0 .3em;
+}
+
 /* Force the hidden attribute */
 .icon[hidden] {
   display: none !important;
