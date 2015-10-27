@@ -12,8 +12,6 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  font-size: inherit;
-  font-weight: inherit;
   height: var(--tool-size);
   cursor: pointer;
   user-select: none;
