@@ -75,7 +75,7 @@ export default {
 
   get _busyAnimation() {
     const START_PADDING = this._buttonPaddingLeft,
-          END_PADDING = this.offsetHeight * OFFSET_FACTOR;
+          END_PADDING = this.offsetHeight * OFFSET_FACTOR + 'px';
 
     return {
       target: this,
