@@ -40,7 +40,7 @@
         });
 
         it('calls _goBusy() when entering busy state', function(){
-          sinon.stub(component, '_goBusy()');
+          sinon.stub(component, '_goBusy');
           component.busy = false;
 
           component.busy = true;
@@ -48,7 +48,7 @@
         });
 
         it('calls _stopBusy() when exiting busy state', function(){
-          sinon.stub(component, '_stopBusy()');
+          sinon.stub(component, '_stopBusy');
           component.busy = true;
 
           component.busy = false;
