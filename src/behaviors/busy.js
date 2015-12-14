@@ -13,6 +13,14 @@ const easings = simpla.constants.easings,
       CLOSE_DURATION = 180;
 
 export default {
+
+  properties: {
+    busy: {
+      type: Boolean,
+      reflectToAttribute: true
+    }
+  },
+
   observers: [
     '_toggleBusy(busy)'
   ],
@@ -30,8 +38,6 @@ export default {
   created() {
     let spinner = new Spinner(),
         prepSpinner;
-
-
 
     this._spinner = spinner;
   },

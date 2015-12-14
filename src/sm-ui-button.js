@@ -13,11 +13,6 @@ class SmUiButton {
         type: Boolean,
         computed: '_computeNoIcon(icon)',
         value: true
-      },
-
-      busy: {
-        type: Boolean,
-        reflectToAttribute: true
       }
 
     };
