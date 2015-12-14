@@ -1,7 +1,39 @@
 <dom-module id="sm-ui-button">
   <template>
-    <style include="sm-css"></style>
-    <link rel="stylesheet" href="./sm-ui-button.css" />
+
+    <style include="sm-css">
+
+      :host {
+        @apply(--typography);
+        --iron-icon-width: var(--icon-size, 16px);
+        --iron-icon-height: var(--icon-size, 16px);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: var(--tool-size);
+        cursor: pointer;
+        user-select: none;
+        -webkit-touch-callout: none;
+      }
+
+      :host([disabled]),
+      :host([busy]) {
+        cursor: default;
+        pointer-events: none;
+      }
+
+      .icon,
+      .content {
+        margin: 0 .3em;
+      }
+
+      /* Force the hidden attribute */
+      .icon[hidden] {
+        display: none !important;
+      }
+
+    </style>
 
     <iron-icon class="icon" icon=[[icon]] hidden=[[_noIcon]]></iron-icon>
     <content></content>
