@@ -1,8 +1,8 @@
 {
-  "name": "sm-helper-button",
+  "name": "sm-ui-button",
   "version": "0.0.0",
-  "description": "Helper button for use inside other Simpla components",
-  "main": "sm-helper-button.html",
+  "description": "UI button for use inside other Simpla components",
+  "main": "sm-ui-button.html",
   "scripts": {
     "test": "gulp test:local"
   },
@@ -16,10 +16,10 @@
   ],
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/simplaio/sm-helper-button.git"
+    "url" : "https://github.com/simplaio/sm-ui-button.git"
   },
   "bugs": {
-    "url" : "https://github.com/simplaio/sm-helper-button/issues"
+    "url" : "https://github.com/simplaio/sm-ui-button/issues"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",

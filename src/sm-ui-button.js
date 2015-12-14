@@ -1,9 +1,9 @@
 import busy from './behaviors/busy';
 
 
-class SmHelperButton {
+class SmUiButton {
   beforeRegister() {
-    this.is = 'sm-helper-button';
+    this.is = 'sm-ui-button';
 
     this.properties = {
 
@@ -37,4 +37,4 @@ class SmHelperButton {
   }
 }
 
-Polymer(SmHelperButton);
+Polymer(SmUiButton);

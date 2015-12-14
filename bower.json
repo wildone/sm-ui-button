@@ -1,8 +1,8 @@
 {
-  "name": "sm-helper-button",
+  "name": "sm-ui-button",
   "version": "0.0.0",
-  "description": "Helper button for use inside other Simpla components",
-  "main": "sm-helper-button.html",
+  "description": "UI button for use inside other Simpla components",
+  "main": "sm-ui-button.html",
   "authors": [
     "Simpla <admin@simpla.io>"
   ],
@@ -16,7 +16,7 @@
   "ignore": [
     "*",
     "!src/**/*",
-    "!sm-helper-button.html",
+    "!sm-ui-button.html",
     "!LICENSE"
   ],
   "dependencies": {

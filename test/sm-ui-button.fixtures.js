@@ -1,5 +1,5 @@
 (function() {
-  var NAME = 'sm-helper-button';
+  var NAME = 'sm-ui-button';
 
   window.fixtures = window.fixtures || {};
   window.fixtures[NAME] = {
