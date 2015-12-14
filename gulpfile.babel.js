@@ -40,7 +40,8 @@ const imports = componentImports.map(dep => `../${dep}`),
             npm({ main: true }),
             commonJs(),
             babel()
-          ]
+          ],
+          format: 'iife'
         },
         postcss: [
           autoprefixer()
