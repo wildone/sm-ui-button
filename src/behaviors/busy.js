@@ -17,36 +17,12 @@ export default {
   properties: {
     busy: {
       type: Boolean,
+      observer: '_busyChanged',
       reflectToAttribute: true
     }
   },
 
-  observers: [
-    '_toggleBusy(busy)'
-  ],
-
-  _toggleBusy(busy) {
-    let prepSpinner;
-
-    if (busy) {
-      this._goBusy();
-    } else {
-      this._stopBusy();
-    }
-  },
-
-  created() {
-    let spinner = new Spinner(),
-        prepSpinner;
-
-    this._spinner = spinner;
-  },
-
   get _spinnerOpts() {
-    if (this.__spinnerOpts) {
-      return this.__spinnerOpts;
-    }
-
     const height = parseFloat(this._buttonHeight) * HEIGHT_PERCENTAGE,
           radius = height * RADIUS_FACTOR,
           length = radius * LENGTH_FACTOR,
@@ -56,15 +32,7 @@ export default {
           lines = LINES,
           zIndex = '';
 
-    return {
-      color,
-      lines,
-      radius,
-      length,
-      width,
-      left,
-      zIndex
-    };
+    return { color, lines, radius, length, width, left, zIndex };
   },
 
   get _buttonPaddingLeft() {
@@ -104,6 +72,19 @@ export default {
     }
   },
 
+  _busyChanged(busy) {
+    if (!this._spinner) {
+      console.error('busy must be called after element attached');
+      return;
+    }
+
+    if (busy) {
+      this._goBusy()
+    } else {
+      this._stopBusy();
+    }
+  },
+
   _goBusy() {
     let { target, frames, opts } = this._busyAnimation;
 
@@ -118,5 +99,10 @@ export default {
 
     this.animate(frames.reverse(), opts.close);
     this._spinner.stop();
-  }
+  },
+
+  attached() {
+    let spinner = new Spinner();
+    this._spinner = spinner;
+  },
 }

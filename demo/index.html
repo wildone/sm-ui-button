@@ -19,12 +19,12 @@
   <body>
     <button is="sm-ui-button" style="background: rgb(76, 208, 204);">foo!</button>
     <button is="sm-ui-button" style="background: rgb(61, 187, 48);" icon="simpla:happy-smiley"></button>
-    <button is="sm-ui-button" style="background: gray" icon="simpla:happy-smiley">foo!</button>
-    <button is="sm-ui-button" id="busy" style="background: rgb(210, 134, 59);">Busy...</button>
+    <button is="sm-ui-button" style="width: 150px; background: gray" icon="simpla:happy-smiley">foo!</button>
+    <button is="sm-ui-button" busy id="busy" style="background: rgb(210, 134, 59);">Busy...</button>
 
     <script>
-      var busyButton = document.getElementById('busy');
-      busyButton.busy = true;
+      // var busyButton = document.querySelector('#busy');
+      // busyButton.busy = true;
     </script>
   </body>
 </html>
