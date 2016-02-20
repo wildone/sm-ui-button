@@ -5,9 +5,6 @@
       @apply(--typography);
       --iron-icon-width: var(--icon-size, 16px);
       --iron-icon-height: var(--icon-size, 16px);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
       height: var(--tool-size);
       cursor: pointer;
@@ -36,15 +33,22 @@
       pointer-events: none;
     }
 
-    .icon,
     .content {
-      margin: 0 .3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content__icon {
+      margin-right: 0.3em;
     }
   </style>
 
   <template>
-    <iron-icon class="icon" icon=[[icon]] hidden$=[[!icon]]></iron-icon>
-    <content></content>
+    <div class="content">
+      <iron-icon class="content__icon" icon=[[icon]] hidden$=[[!icon]]></iron-icon>
+      <content></content>
+    </div>
   </template>
 
   <script src="./sm-ui-button.js"></script>
