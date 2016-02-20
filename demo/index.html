@@ -6,7 +6,7 @@
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
     <style>
-      sm-ui-button {
+      button[is="sm-ui-button"] {
         color: white;
         float: left;
         border-radius: 5px;
@@ -17,10 +17,10 @@
     <link rel="import" href="../sm-ui-button.html" />
   </head>
   <body>
-    <sm-ui-button style="background: rgb(76, 208, 204);">foo!</sm-ui-button>
-    <sm-ui-button style="background: rgb(61, 187, 48);" icon="simpla:happy-smiley"></sm-ui-button>
-    <sm-ui-button style="background: gray" icon="simpla:happy-smiley">foo!</sm-ui-button>
-    <sm-ui-button id="busy" style="background: rgb(210, 134, 59);">Busy...</sm-ui-button>
+    <button is="sm-ui-button" style="background: rgb(76, 208, 204);">foo!</button>
+    <button is="sm-ui-button" style="background: rgb(61, 187, 48);" icon="simpla:happy-smiley"></button>
+    <button is="sm-ui-button" style="background: gray" icon="simpla:happy-smiley">foo!</button>
+    <button is="sm-ui-button" id="busy" style="background: rgb(210, 134, 59);">Busy...</button>
 
     <script>
       var busyButton = document.getElementById('busy');

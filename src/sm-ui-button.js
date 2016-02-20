@@ -5,14 +5,13 @@ class SmUiButton {
   beforeRegister() {
     this.is = 'sm-ui-button';
 
+    this.extends = 'button';
+
     this.properties = {
 
-      icon: String,
-
-      _noIcon: {
-        type: Boolean,
-        computed: '_computeNoIcon(icon)',
-        value: true
+      icon: {
+        type: String,
+        value: ''
       }
 
     };
@@ -25,10 +24,6 @@ class SmUiButton {
         reflectToAttribute: true
       })
     ];
-  }
-
-  _computeNoIcon(icon) {
-    return !icon
   }
 }
 
