@@ -15,7 +15,7 @@
   <body>
     <test-fixture id="default">
       <template>
-        <sm-ui-button></sm-ui-button>
+        <button is="sm-ui-button"></button>
       </template>
     </test-fixture>
     <script>
@@ -36,7 +36,7 @@
 
         it('has active behavior', function() {
           component.active = true;
-          expect(component.hasAttribute('active')).to.be.true;
+          expect(component.active).to.be.true;
         });
 
         it('calls _goBusy() when entering busy state', function(){
