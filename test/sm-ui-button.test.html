@@ -54,6 +54,12 @@
           component.busy = false;
           expect(component._stopBusy.called).to.be.true;
         });
+
+        it('doesn\'t call _stopBusy() if not previously busy', function() {
+          sinon.stub(component, '_stopBusy');
+          component.busy = false;
+          expect(component._stopBusy.called).not.to.be.true;
+        });
       });
     </script>
   </body>

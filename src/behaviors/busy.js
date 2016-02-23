@@ -72,7 +72,14 @@ export default {
     }
   },
 
-  _busyChanged(busy) {
+  /**
+   * Observer of busy property. Triggers _stopBusy and _goBusy animations depending
+   * 	on busy state. To trigger _stopBusy, wasBusy must be true
+   * @param  {Boolean} busy    If currently busy
+   * @param  {Boolean} wasBusy If was busy
+   * @return {undefined}
+   */
+  _busyChanged(busy, wasBusy) {
     if (!this._spinner) {
       console.error('busy must be called after element attached');
       return;
@@ -80,7 +87,7 @@ export default {
 
     if (busy) {
       this._goBusy()
-    } else {
+    } else if (wasBusy) {
       this._stopBusy();
     }
   },
