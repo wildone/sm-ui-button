@@ -15,11 +15,11 @@
     "button"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/simplaio/sm-ui-button.git"
+    "type": "git",
+    "url": "https://github.com/simplaio/sm-ui-button.git"
   },
   "bugs": {
-    "url" : "https://github.com/simplaio/sm-ui-button/issues"
+    "url": "https://github.com/simplaio/sm-ui-button/issues"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.0",
@@ -46,6 +46,7 @@
     "rollup-plugin-commonjs": "^1.4.0",
     "rollup-plugin-npm": "^1.1.0",
     "run-sequence": "^1.1.5",
+    "spin.js": "^2.3.2",
     "web-component-tester": "^3.3.0",
     "yargs": "^3.27.0"
   }
