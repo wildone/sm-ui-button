@@ -10,7 +10,8 @@ const easings = simpla.constants.easings,
       BIG_WIDTH = 3,
       LINES = 12,
       OPEN_DURATION = 200,
-      CLOSE_DURATION = 180;
+      CLOSE_DURATION = 180,
+      WARNING_MSG = 'busy cannot be called before element is attached';
 
 export default {
 
@@ -81,7 +82,7 @@ export default {
    */
   _busyChanged(busy, wasBusy) {
     if (!this._spinner) {
-      console.error('busy must be called after element attached');
+      console.warn(WARNING_MSG);
       return;
     }
 
