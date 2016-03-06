@@ -20,7 +20,9 @@ class SmUiButton {
   get behaviors() {
     return [
       busy,
-      simpla.behaviors.active()
+      simpla.behaviors.active({
+        reflectToAttribute: true
+      })
     ];
   }
 }
