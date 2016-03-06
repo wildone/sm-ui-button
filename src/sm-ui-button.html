@@ -1,14 +1,7 @@
 <dom-module id="sm-ui-button">
-  <style include="sm-css">
-
+  <style include="sm-css"></style>
+  <style>
     :host {
-      @apply(--typography);
-      --iron-icon-width: var(--icon-size, 16px);
-      --iron-icon-height: var(--icon-size, 16px);
-      position: relative;
-      height: var(--tool-size);
-      cursor: pointer;
-
       /* Reset default button styles */
       font: inherit;
       color: inherit;
@@ -19,6 +12,15 @@
       border: 0;
       padding: 0;
       outline: 0;
+
+      /* Default button styles */
+      @apply(--typography);
+      font-family: 'GT Walsheim';
+      --iron-icon-width: var(--icon-size, 16px);
+      --iron-icon-height: var(--icon-size, 16px);
+      position: relative;
+      height: var(--tool-size);
+      cursor: pointer;
     }
 
     /* Disable Firefox focus styles */
