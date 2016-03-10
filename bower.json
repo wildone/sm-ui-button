@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "webcomponentsjs": "^0.7.14",
-    "polymer": "~1.2.0",
+    "polymer": "^1.3.0",
     "simpla-core": "https://github.com/simplaio/simpla-core.git",
     "iron-icon": "PolymerElements/iron-icon#~1.0.5"
   },
