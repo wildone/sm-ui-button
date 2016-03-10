@@ -1,43 +1,38 @@
 // Core deps
-import gulp from 'gulp';
-import notify from 'gulp-notify';
-import gulpif from 'gulp-if';
-import filter from 'gulp-filter';
-import size from 'gulp-size';
-import plumber from 'gulp-plumber';
-import gulprun from 'run-sequence'
-import path from 'path';
-import del from 'del';
-import yargs from 'yargs';
-import browserSync from 'browser-sync';
-import wct from 'web-component-tester';
+// Use require() as because of rollup babel preset
+var gulp = require('gulp'),
+    notify = require('gulp-notify'),
+    gulpif = require('gulp-if'),
+    size = require('gulp-size'),
+    plumber = require('gulp-plumber'),
+    gulprun = require('run-sequence'),
+    yargs = require('yargs'),
+    browserSync = require('browser-sync'),
+    wct = require('web-component-tester'),
 
-// JS
-import eslint from 'gulp-eslint';
-import rollup from 'gulp-rollup';
-import npm from 'rollup-plugin-npm';
-import commonJs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+    // HTML
+    inline = require('gulp-inline-source'),
+    processInline = require('gulp-process-inline'),
+    minify = require('gulp-htmlmin'),
 
-// HTML
-import vulcanize from 'gulp-vulcanize';
-import minifyHTML from 'gulp-htmlmin';
-import inline  from 'gulp-inline-source';
+    // JS
+    eslint = require('gulp-eslint'),
+    rollup = require('gulp-rollup-file'),
+    resolve = require('rollup-plugin-node-resolve'),
+    commonJs = require('rollup-plugin-commonjs'),
+    babel = require('rollup-plugin-babel'),
 
-// CSS
-import postcss from 'gulp-html-postcss';
-import autoprefixer from 'autoprefixer';
+    // CSS
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer');
 
-import { componentImports, name as ELEMENT_NAME } from './bower.json';
-
-const imports = componentImports.map(dep => `../${dep}`),
-      bs = browserSync.create(),
-      argv = yargs.alias('d', 'debug').boolean(['debug']).argv,
+const bs = browserSync.create(),
+      argv = yargs.boolean(['debug']).argv,
       errorNotifier = () => plumber({ errorHandler: notify.onError('Error: <%= error.message %>') }),
       OPTIONS = {
         rollup: {
           plugins: [
-            npm({ main: true }),
+            resolve({ main: true }),
             commonJs(),
             babel()
           ],
@@ -46,10 +41,9 @@ const imports = componentImports.map(dep => `../${dep}`),
         postcss: [
           autoprefixer()
         ],
-        vulcanize: {
-          stripComments: true,
-          inlineScripts: true,
-          addedImports: imports
+        inline: {
+          compress: false,
+          swallowErrors: true
         },
         HTMLmin: {
           removeComments: true,
@@ -62,17 +56,12 @@ const imports = componentImports.map(dep => `../${dep}`),
           minifyCSS: true,
           minifyJS: true
         },
-        inline: {
-          compress: false,
-          swallowErrors: true
-        },
         browserSync: {
           server: {
             baseDir: './',
             index: 'demo/index.html',
             routes: {
-              '/': './bower_components',
-              [`/${ELEMENT_NAME}.html`]: `./${ELEMENT_NAME}.html`
+              '/': './bower_components'
             }
           },
           open: false,
@@ -82,54 +71,38 @@ const imports = componentImports.map(dep => `../${dep}`),
 
 wct.gulp.init(gulp);
 
-gulp.task('process', () => {
-  let js = filter((file) => /\.(js)$/.test(file.path), { restore: true }),
-      html = filter((file) => /\.(html)$/.test(file.path), { restore: true }),
-      img = filter((file) => /\.(jpe?g|png|svg|gif)$/.test(file.path), { restore: true });
-
-  return gulp.src(['src/*.{html,js,css}'])
+gulp.task('build', () => {
+  return gulp.src(['src/*.html'])
           .pipe(errorNotifier())
 
-            // JS
-            .pipe(js)
-            .pipe(eslint())
-            .pipe(eslint.format())
-            .pipe(gulpif(!argv.debug, eslint.failAfterError()))
-            .pipe(rollup(OPTIONS.rollup))
-            .pipe(js.restore)
-
-            // HTML and (inline) CSS
-            .pipe(html)
+            // Inline styles and scripts
             .pipe(inline(OPTIONS.inline))
-            .pipe(postcss(OPTIONS.postcss))
-            .pipe(html.restore)
 
+            // Js
+            .pipe(processInline().extract('script'))
+              .pipe(eslint())
+              .pipe(eslint.format())
+              .pipe(gulpif(!argv.debug, eslint.failAfterError()))
+              .pipe(rollup(OPTIONS.rollup))
+            .pipe(processInline().restore())
+
+            // CSS
+            .pipe(processInline().extract('style'))
+              .pipe(postcss(OPTIONS.postcss))
+            .pipe(processInline().restore())
+
+            // Minify and pipe out
+            .pipe(gulpif(!argv.debug, minify(OPTIONS.HTMLmin)))
             .pipe(size({ gzip: true }))
-          .pipe(gulp.dest('.tmp'));
+          .pipe(gulp.dest('.'));
 });
-
-gulp.task('build', ['process'], () => {
-  return gulp.src([`.tmp/${ELEMENT_NAME}.html`])
-          .pipe(errorNotifier())
-          .pipe(vulcanize(OPTIONS.vulcanize))
-          .pipe(gulpif(!argv.debug, minifyHTML(OPTIONS.HTMLmin)))
-        .pipe(gulp.dest('.'));
-});
-
-gulp.task('clean', () => {
-  if (!argv.debug) {
-    del([ '.tmp' ]);
-  }
-});
-
-gulp.task('run', () => gulprun('build', 'clean'));
 
 gulp.task('demo', (callback) => bs.init(OPTIONS.browserSync));
 
 gulp.task('refresh', () => bs.reload());
 
-gulp.task('test', ['run', 'test:local']);
+gulp.task('test', ['build', 'test:local']);
 
-gulp.task('watch', () => gulp.watch(['src/**/*'], () => gulprun('run', 'refresh')));
+gulp.task('watch', () => gulp.watch(['src/**/*'], () => gulprun('build', 'refresh')));
 
-gulp.task('default', ['run', 'demo', 'watch']);
+gulp.task('default', ['build', 'demo', 'watch']);
