@@ -1,30 +1,32 @@
+/*eslint one-var: 0 */
+
 // Core deps
-// Use require() as because of rollup babel preset
-var gulp = require('gulp'),
-    notify = require('gulp-notify'),
-    gulpif = require('gulp-if'),
-    size = require('gulp-size'),
-    plumber = require('gulp-plumber'),
-    gulprun = require('run-sequence'),
-    yargs = require('yargs'),
-    browserSync = require('browser-sync'),
-    wct = require('web-component-tester'),
+// Use require() because of rollup babel preset
+const gulp = require('gulp');
+const notify = require('gulp-notify');
+const gulpif = require('gulp-if');
+const size = require('gulp-size');
+const plumber = require('gulp-plumber');
+const gulprun = require('run-sequence');
+const yargs = require('yargs');
+const browserSync = require('browser-sync');
+const wct = require('web-component-tester');
 
-    // HTML
-    inline = require('gulp-inline-source'),
-    processInline = require('gulp-process-inline'),
-    minify = require('gulp-htmlmin'),
+// HTML
+const inline = require('gulp-inline-source');
+const processInline = require('gulp-process-inline');
+const minify = require('gulp-htmlmin');
 
-    // JS
-    eslint = require('gulp-eslint'),
-    rollup = require('gulp-rollup-file'),
-    resolve = require('rollup-plugin-node-resolve'),
-    commonJs = require('rollup-plugin-commonjs'),
-    babel = require('rollup-plugin-babel'),
+// JS
+const eslint = require('gulp-eslint');
+const rollup = require('gulp-rollup-file');
+const resolve = require('rollup-plugin-node-resolve');
+const commonJs = require('rollup-plugin-commonjs');
+const babel = require('rollup-plugin-babel');
 
-    // CSS
-    postcss = require('gulp-postcss'),
-    autoprefixer = require('autoprefixer');
+// CSS
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
 
 const bs = browserSync.create(),
       argv = yargs.boolean(['debug']).argv,
