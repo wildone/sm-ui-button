@@ -60,6 +60,28 @@
           component.busy = false;
           expect(component._stopBusy.called).not.to.be.true;
         });
+
+        it('shouldnt toggle busy animation if not yet painted', function() {
+          sinon.stub(window, 'getComputedStyle').returns({});
+          sinon.stub(component, '_goBusy');
+
+          component.busy = false;
+          component.busy = true;
+
+          expect(component._goBusy.called).to.be.false;
+
+          window.getComputedStyle.restore();
+        });
+
+        it('shouldnt toggle busy animation if spinner not loaded', function() {
+          sinon.stub(component, '_goBusy');
+          component._spinner = null;
+
+          component.busy = false;
+          component.busy = true;
+
+          expect(component._goBusy.called).to.be.false;
+        });
       });
     </script>
   </body>
