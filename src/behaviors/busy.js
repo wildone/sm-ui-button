@@ -37,15 +37,27 @@ export default {
   },
 
   get _buttonPaddingLeft() {
-    return this.__buttonPaddingLeft || (this.__buttonPaddingLeft = window.getComputedStyle(this).paddingLeft);
+    if (!this.__buttonPaddingLeft) {
+      this.__buttonPaddingLeft = window.getComputedStyle(this).paddingLeft;
+    }
+
+    return this.__buttonPaddingLeft;
   },
 
   get _buttonHeight() {
-    return this.__buttonHeight || (this.__buttonHeight = window.getComputedStyle(this).height);
+    if (!this.__buttonHeight) {
+      this.__buttonHeight = window.getComputedStyle(this).height;
+    }
+
+    return this.__buttonHeight;
   },
 
   get _buttonColor() {
-    return this.__buttonColor || (this.__buttonColor = window.getComputedStyle(this).color);
+    if (!this.__buttonColor) {
+      this.__buttonColor = window.getComputedStyle(this).color;
+    }
+
+    return this.__buttonColor;
   },
 
   get _busyAnimation() {
@@ -81,7 +93,9 @@ export default {
    * @return {undefined}
    */
   _busyChanged(busy, wasBusy) {
-    if (!this._spinner) {
+    let isReady = this._spinner && window.getComputedStyle(this).height;
+
+    if (!isReady) {
       console.warn(WARNING_MSG);
       return;
     }
