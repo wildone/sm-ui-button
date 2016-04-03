@@ -12,7 +12,9 @@ class SmUiButton {
       icon: {
         type: String,
         value: ''
-      }
+      },
+
+      _content: String
 
     };
   }
@@ -24,6 +26,10 @@ class SmUiButton {
         reflectToAttribute: true
       })
     ];
+  }
+
+  attached() {
+    this._content = Polymer.dom(this).innerHTML;
   }
 }
 

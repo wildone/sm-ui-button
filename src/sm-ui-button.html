@@ -46,13 +46,17 @@
     .content__icon {
       --iron-icon-width: var(--icon-size, 16px);
       --iron-icon-height: var(--icon-size, 16px);
-      margin: 0 0.3em;
+      margin-right: 0.3em;
+    }
+
+    .content__icon[no-content] {
+      margin: 0;
     }
   </style>
 
   <template>
     <div class="content">
-      <iron-icon class="content__icon" icon=[[icon]] hidden$=[[!icon]]></iron-icon>
+      <iron-icon class="content__icon" icon=[[icon]] no-content$=[[!_content]] hidden$=[[!icon]]></iron-icon>
       <content></content>
     </div>
   </template>
