@@ -1,6 +1,5 @@
 import busy from './behaviors/busy';
 
-
 class SmUiButton {
   beforeRegister() {
     this.is = 'sm-ui-button';
@@ -14,6 +13,13 @@ class SmUiButton {
         value: ''
       },
 
+      active: {
+        type: Boolean,
+        reflectToAttribute: true,
+        notify: true,
+        value: false
+      },
+
       _content: String
 
     };
@@ -21,10 +27,7 @@ class SmUiButton {
 
   get behaviors() {
     return [
-      busy,
-      simpla.behaviors.active({
-        reflectToAttribute: true
-      })
+      busy
     ];
   }
 
