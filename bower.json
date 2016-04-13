@@ -23,7 +23,8 @@
     "webcomponentsjs": "^0.7.14",
     "polymer": "^1.3.0",
     "sm-ui-core": "https://github.com/SimplaElements/sm-ui-core.git",
-    "iron-icon": "PolymerElements/iron-icon#~1.0.5"
+    "iron-icon": "PolymerElements/iron-icon#~1.0.5",
+    "object-assign": "simplaio/object-assign"
   },
   "devDependencies": {
     "web-component-tester": "^3.3.22",
