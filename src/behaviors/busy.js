@@ -1,6 +1,6 @@
 import Spinner from 'spin.js';
 
-const easings = simpla.constants.easings,
+const easings = simpla._constants.easings,
       OFFSET_FACTOR = 1.4,
       HEIGHT_PERCENTAGE = 0.8,
       RADIUS_FACTOR = 0.2,
