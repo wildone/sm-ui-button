@@ -1,6 +1,6 @@
 {
   "name": "sm-ui-button",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "UI button for use inside other Simpla components",
   "main": "sm-ui-button.html",
   "authors": [
