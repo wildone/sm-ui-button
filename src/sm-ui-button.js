@@ -20,7 +20,10 @@ class SmUiButton {
         value: false
       },
 
-      _content: String
+      _content: {
+        type: String,
+        value: ''
+      }
 
     };
   }
