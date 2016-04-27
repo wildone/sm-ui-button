@@ -35,7 +35,7 @@ class SmUiButton {
   }
 
   attached() {
-    this._content = Polymer.dom(this).innerHTML;
+    this._content = Polymer.dom(this).innerHTML.trim();
   }
 }
 
