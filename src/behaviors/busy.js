@@ -67,8 +67,8 @@ export default {
     return {
       target: this,
       frames: [
-        { 'padding-left': START_PADDING },
-        { 'padding-left': END_PADDING }
+        { paddingLeft: START_PADDING },
+        { paddingLeft: END_PADDING }
       ],
       opts: {
         open: {
