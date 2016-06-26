@@ -28,6 +28,7 @@ const babel = require('rollup-plugin-babel');
 // CSS
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
+const easings = require('postcss-easings');
 
 const bs = browserSync.create(),
       argv = yargs.boolean(['debug']).argv,
@@ -42,7 +43,8 @@ const bs = browserSync.create(),
           format: 'iife'
         },
         postcss: [
-          autoprefixer()
+          autoprefixer(),
+          easings()
         ],
         inline: {
           compress: false,

@@ -1,4 +1,4 @@
-import busy from './behaviors/busy';
+const BUSY_HEIGHT_FACTOR = 0.5;
 
 class SmUiButton {
   beforeRegister() {
@@ -20,18 +20,17 @@ class SmUiButton {
         value: false
       },
 
+      busy: {
+        type: Boolean,
+        reflectToAttribute: true
+      },
+
       _content: {
         type: String,
         value: ''
       }
 
     };
-  }
-
-  get behaviors() {
-    return [
-      busy
-    ];
   }
 
   attached() {

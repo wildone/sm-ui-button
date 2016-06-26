@@ -2,6 +2,8 @@
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../sm-ui-core/sm-ui-core.html">
 <link rel="import" href="../object-assign/object-assign.html">
+<link rel="import" href="../paper-spinner/paper-spinner-lite.html">
+<link rel="import" href="../spinkit-element/spinkit-element.html">
 
 <dom-module id="sm-ui-button">
   <style include="sm-css-shady"></style>
@@ -19,7 +21,7 @@
       padding: 0;
       outline: 0;
 
-      /* Default button styles */
+      /* Core styles */
       @apply(--typography);
       position: relative;
       height: var(--tool-size);
@@ -38,27 +40,63 @@
       pointer-events: none;
     }
 
-    .content {
+    .wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 1.2;
     }
 
-    .content__icon {
-      --iron-icon-width: var(--icon-size, 16px);
-      --iron-icon-height: var(--icon-size, 16px);
+    .busy {
+      width: 0;
+      transition: width 180ms ease-out-cubic;
+    }
+
+    .busy[data-active] {
+      width: 1.1em;
+      transition: width 200ms ease-out-back;
+    }
+
+    .busy__spinner {
+      --spinkit-element-color: white;
+      position: absolute;
+      left: 0.8em;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 1.1em;
+      width: 1.1em;
+    }
+
+    .icon {
+      --iron-icon-width: var(--icon-size, 1em);
+      --iron-icon-height: var(--icon-size, 1em);
       margin-right: 0.3em;
     }
 
-    .content__icon[no-content] {
+    .icon[no-content] {
       margin: 0;
     }
   </style>
 
   <template>
-    <div class="content">
-      <iron-icon class="content__icon" icon=[[icon]] no-content$=[[!_content]] hidden$=[[!icon]]></iron-icon>
+    <div class="wrapper">
+
+      <div class="busy" id="busy" data-active$="[[busy]]">
+        <spinkit-element
+          class="busy__spinner"
+          name="fading-circle"
+          alt="Busy"
+          active="[[busy]]">
+        </spinkit-element>
+      </div>
+
+      <iron-icon
+        class="icon"
+        icon=[[icon]]
+        no-content$=[[!_content]]
+        hidden$=[[!icon]]>
+      </iron-icon>
+
       <content></content>
     </div>
   </template>
