@@ -22,6 +22,7 @@ class SmUiButton {
 
       busy: {
         type: Boolean,
+        observer: '_busyChanged',
         reflectToAttribute: true
       },
 
@@ -31,6 +32,13 @@ class SmUiButton {
       }
 
     };
+  }
+
+  _busyChanged(busy) {
+    if (busy) {
+      this.customStyle['--spinkit-element-color'] = getComputedStyle(this).color;
+      this.updateStyles();
+    }
   }
 
   attached() {
